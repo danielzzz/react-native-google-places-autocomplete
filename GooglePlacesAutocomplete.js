@@ -332,11 +332,15 @@ export const GooglePlacesAutocomplete = forwardRef((props, ref) => {
             ...props.GooglePlacesDetailsQuery,
           }),
       );
-
+      try {
+        
       request.withCredentials = requestShouldUseWithCredentials();
       setRequestHeaders(request, getRequestHeaders(props.requestUrl));
 
       request.send();
+      } catch (e) {
+        // ignore errors
+      }
     } else if (rowData.isCurrentLocation === true) {
       // display loader
       _enableRowLoader(rowData);
